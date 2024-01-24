@@ -1,4 +1,4 @@
 # Abhay
 This is my First Git Repository
 <br>
-Author - Abhay Kumar Pandey (AliveAbhay)
+Author - Abhay Pandey (AliveAbhay)
