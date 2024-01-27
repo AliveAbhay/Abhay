@@ -68,3 +68,22 @@ def gen_reading_frames(seq):
     frames.append(translation_seq(seq[::-1], 1))
     frames.append(translation_seq(seq[::-1], 2))
     return frames
+
+def proteins_from_rf(aa_seq):
+    current_prot = []
+    proteins = []
+    for aa in aa_seq:
+        if aa == '_':
+            if current_prot:
+                for p in current_prot:
+                    proteins.append(p)
+                current_prot = []
+        else:
+            if aa == 'M':
+                current_prot.append("")
+            for i in range(len(current_prot)):
+                current_prot[i] += aa
+    return proteins
+
+
+          

@@ -27,8 +27,13 @@ print(f'GC Content in Subsection (K=5) = {gc_content_subseq(DNAstring, k=5)}\n')
 
 print(f'Amino Acids Sequence from DNA = {translation_seq(DNAstring, 0)}\n')
 
-print(f'Codon Frequency (L) = {codon_usage(DNAstring, "L")}\n')
+print(f'Codon Frequency (M) = {codon_usage(DNAstring, "M")}\n')
 
 print('Reading frames = ')
 for frame in gen_reading_frames(DNAstring):
     print(frame)
+
+test_rf_frame = ['M', 'T', 'M', 'Q', 'R', 'L', 'S', 'L', 'Y',
+                 'V', 'V', 'T', '_', 'S', 'P', 'C']
+
+print(proteins_from_rf((frame)))
