@@ -1,6 +1,26 @@
 from DNA_Toolkit import *
+from utilities import colored
 import random
-rndDNAStr = ''.join([random.choice(Nucleotides)
-                     for nuc in range(20)])
-print(validateSeq(rndDNAStr))
-print(countNucFrquency(rndDNAStr))
+randDNAstr = ''.join([random.choice(Nucleotides)
+                     for nuc in range(50)])
+DNAstring = validateSeq(randDNAstr)
+# our sequences
+
+print("DNA (sequence) = " + (DNAstring))
+print((f'DNA Complementry Seq =  {complement(DNAstring)}\n'))
+print(f'Reverse DNA seq = {reverese_complement(DNAstring)}\n')
+
+# sequence matcher
+print(f" DNA String + Complement:\n5'  {(DNAstring)}  3'")
+print(f"    {''.join(['|' for c in range(len(DNAstring))])}")
+print(f"3'  {complement(DNAstring)}  5'\n")
+
+# sequence counter
+print(f'Sequence Length = {len(DNAstring)}')
+print(f'Nucleotide Frequency = {countNucFrquency(DNAstring)}')
+result = countNucFrquency(DNAstring)
+print(f'{" ".join([str(val) for key, val in result.items()])}\n')
+print(f'RNA (transcript) =  + {transcription(DNAstring)}\n')
+
+print(f'GC Content = {gc_content(DNAstring)}%\n')
+print(f'GC Content in Subsection (K=5) = {gc_content_subseq(DNAstring, k=5)}\n')
