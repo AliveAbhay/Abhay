@@ -1,6 +1,7 @@
 from DNA_Toolkit import *
 from utilities import colored
 import random
+
 randDNAstr = ''.join([random.choice(Nucleotides)
                      for nuc in range(50)])
 DNAstring = validateSeq(randDNAstr)
@@ -17,10 +18,17 @@ print(f"3'  {complement(DNAstring)}  5'\n")
 
 # sequence counter
 print(f'Sequence Length = {len(DNAstring)}')
-print(f'Nucleotide Frequency = {countNucFrquency(DNAstring)}')
-result = countNucFrquency(DNAstring)
+print(f'Nucleotide Frequency = {Nucleotide_Frquency(DNAstring)}')
+result = Nucleotide_Frquency(DNAstring)
 print(f'{" ".join([str(val) for key, val in result.items()])}\n')
-print(f'RNA (transcript) =  + {transcription(DNAstring)}\n')
-
+print(f'RNA (transcript) =  {transcription(DNAstring)}\n')
 print(f'GC Content = {gc_content(DNAstring)}%\n')
 print(f'GC Content in Subsection (K=5) = {gc_content_subseq(DNAstring, k=5)}\n')
+
+print(f'Amino Acids Sequence from DNA = {translation_seq(DNAstring, 0)}\n')
+
+print(f'Codon Frequency (L) = {codon_usage(DNAstring, "L")}\n')
+
+print('Reading frames = ')
+for frame in gen_reading_frames(DNAstring):
+    print(frame)

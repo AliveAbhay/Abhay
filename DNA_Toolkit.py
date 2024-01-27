@@ -9,7 +9,7 @@ def validateSeq(dna_seq):
             return False
     return tmpseq
 
-def countNucFrquency(seq):
+def Nucleotide_Frquency(seq):
     '''Seq counter'''
     tmpFreqDict = {"A": 0, "T": 0,  "G": 0, "C": 0}
     for nuc in  seq:
@@ -42,6 +42,29 @@ def gc_content_subseq(seq, k=20):
         res.append(gc_content(subseq))
     return res
 
+def translation_seq(seq, init_pos=0):
+    ''' Translate DNA Sequence to Amino acid'''
+    return [DNA_Codons[seq[pos:pos + 3]] for pos in range(init_pos, len(seq) -2, 3)]
 
-#def translation(seq)
-    # RNA -> Protein translation
+def codon_usage(seq, aminoacid):
+    ''' Provides the frequency each codon encoding a given aminoacid in a DNA sequence'''
+    tmpList = []
+    for i in range(0, len(seq) - 2, 3):
+        if DNA_Codons[seq[i:i + 3]] == aminoacid:
+            tmpList.append(seq[i:i + 3])
+
+    freqDict = dict(collections.Counter(tmpList))
+    totalWeight = sum(freqDict.values())
+    for seq in freqDict:
+        freqDict[seq] = round(freqDict[seq] / totalWeight, 2)
+    return freqDict
+
+def gen_reading_frames(seq):
+    frames = []
+    frames.append(translation_seq(seq, 0))
+    frames.append(translation_seq(seq, 1))
+    frames.append(translation_seq(seq, 2))
+    frames.append(translation_seq(seq[::-1], 0))
+    frames.append(translation_seq(seq[::-1], 1))
+    frames.append(translation_seq(seq[::-1], 2))
+    return frames

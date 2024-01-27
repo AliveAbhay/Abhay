@@ -1,6 +1,6 @@
 import collections
 
-def countNucFrquency(seq):
+def Nucleotide_Frquency(seq):
     '''Seq counter'''
     tmpFreqDict = {"A": 0, "T": 0,  "G": 0, "C": 0}
     for nuc in  seq:
